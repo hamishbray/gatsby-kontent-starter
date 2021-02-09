@@ -35,6 +35,7 @@ module.exports = {
       resolve: `@kentico/gatsby-source-kontent`,
       options: {
         projectId: process.env.KONTENT_PROJECT_ID,
+				previewApiKey: process.env.KONTENT_PREVIEW_API_KEY,
         // Please note that with the Sample Project generated above, `en-US` is the default language for the project and this config. For a blank project, this needs to be `default`.
         languageCodenames: [
           `en-US`, // Or the languages in your project (Project settings -> Localization)
