@@ -4,4 +4,5 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+exports.onCreateNode = require('./node-utils/onCreateNode');
+exports.createPages = require('./node-utils/createPages.js');

@@ -1,6 +1,10 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Gatsby Kentico Kontent POC`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
@@ -25,6 +29,16 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+		},
+		{
+      resolve: `@kentico/gatsby-source-kontent`,
+      options: {
+        projectId: process.env.KONTENT_PROJECT_ID,
+        // Please note that with the Sample Project generated above, `en-US` is the default language for the project and this config. For a blank project, this needs to be `default`.
+        languageCodenames: [
+          `en-US`, // Or the languages in your project (Project settings -> Localization)
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
