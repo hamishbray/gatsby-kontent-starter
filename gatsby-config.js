@@ -1,52 +1,52 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Kentico Kontent POC`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: 'Gatsby Kentico Kontent POC',
+    description: 'Gatsby start site with Kentico Kontent source',
+    author: '@hamishbray',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        name: 'gatsby-starter-default',
+        short_name: 'starter',
+        start_url: '/',
+        background_color: '#663399',
+        theme_color: '#663399',
+        display: 'minimal-ui',
+        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
 		},
 		{
-      resolve: `@kentico/gatsby-source-kontent`,
+      resolve: '@kentico/gatsby-source-kontent',
       options: {
         projectId: process.env.KONTENT_PROJECT_ID,
 				previewApiKey: process.env.KONTENT_PREVIEW_API_KEY,
 				globalQueryConfig: {
 					usePreviewMode: true, // Queries the Delivery Preview API.
 				},
-        // Please note that with the Sample Project generated above, `en-US` is the default language for the project and this config. For a blank project, this needs to be `default`.
+        // Please note that with the Sample Project generated above, 'en-US' is the default language for the project and this config. For a blank project, this needs to be 'default'.
         languageCodenames: [
-          `en-US`, // Or the languages in your project (Project settings -> Localization)
+          'en-US', // Or the languages in your project (Project settings -> Localization)
         ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // 'gatsby-plugin-offline',
   ],
 }
