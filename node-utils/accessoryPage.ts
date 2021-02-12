@@ -83,7 +83,8 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
     }
   `)
 
-  const accessories = result.data?.allKontentItemAccessory.edges.map(
+	//@ts-ignore
+  const accessories = result.data.allKontentItemAccessory.edges.map(
     ({ node }) => parseAccessory(node.elements)
   )
 
