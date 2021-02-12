@@ -85,7 +85,6 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
 
 	const accessories = result.data?.allKontentItemAccessory.edges.map(({ node }) => parseAccessory(node.elements))
 
-	console.log('accessories: ', accessories)
   // All Accessories Page
   createPage({
     path: `/accessories`,
