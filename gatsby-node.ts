@@ -1,6 +1,3 @@
-import createPages from "./node-utils/createPages";
-import onCreateNode from "./node-utils/onCreateNode";
-
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -8,4 +5,3 @@ import onCreateNode from "./node-utils/onCreateNode";
  */
 export { default as onCreateNode } from './node-utils/onCreateNode';
 export { default as createPages } from './node-utils/createPages';
-
