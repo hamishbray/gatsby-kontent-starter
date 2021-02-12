@@ -37,7 +37,7 @@ interface AllKontentItemAccessoryResult {
 }
 
 export const createAccessoryPages = async (createPage: any, graphql: any) => {
-	const result: AllKontentItemAccessoryResult = await graphql(`
+  const result: AllKontentItemAccessoryResult = await graphql(`
     {
       allKontentItemAccessory {
         edges {
@@ -70,12 +70,12 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
               url_pattern {
                 value
               }
-							product_status {
-								value {
-									codename
-									name
-								}
-							}
+              product_status {
+                value {
+                  codename
+                  name
+                }
+              }
             }
           }
         }
@@ -83,7 +83,9 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
     }
   `)
 
-	const accessories = result.data?.allKontentItemAccessory.edges.map(({ node }) => parseAccessory(node.elements))
+  const accessories = result.data?.allKontentItemAccessory.edges.map(
+    ({ node }) => parseAccessory(node.elements)
+  )
 
   // All Accessories Page
   createPage({
@@ -100,21 +102,19 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
       path: `/accessories/${accessory.slug}`,
       component: resolve(`src/templates/accessory.tsx`),
       context: {
-        ...accessory
+        ...accessory,
       },
     })
   })
 }
 
-function parseAccessory(accessory: AccessoryItem): Accessory {
-  return {
-    manufacturer: accessory.manufacturer?.value,
-    price: accessory.price?.value || undefined,
-    productName: accessory.product_name.value,
-    productStatus: accessory.product_status.value,
-    longDescription: accessory.long_description.value,
-    shortDescription: accessory.short_description.value,
-    slug: accessory.url_pattern.value,
-    image: accessory.image?.value[0]
-  }
-}
+const parseAccessory = (accessory: AccessoryItem): Accessory => ({
+  manufacturer: accessory.manufacturer?.value,
+  price: accessory.price?.value || undefined,
+  productName: accessory.product_name.value,
+  productStatus: accessory.product_status.value,
+  longDescription: accessory.long_description.value,
+  shortDescription: accessory.short_description.value,
+  slug: accessory.url_pattern.value,
+  image: accessory.image?.value[0],
+})
