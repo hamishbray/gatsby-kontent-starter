@@ -21,7 +21,7 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
 		<div className="accessories">
 			{pageContext.accessories?.map((accessory, index) => (
 				<div key={index}>
-					<a href={`accessories/${accessory.slug}`}><h2>{accessory.productName}</h2></a>
+					<a href={accessory.slug}><h2>{accessory.productName}</h2></a>
 					<img width="150" height="150" src={accessory.image?.url} alt={accessory.image?.description} />
 					<div dangerouslySetInnerHTML={{ __html: accessory.shortDescription }} />
 				</div>
