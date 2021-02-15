@@ -1,5 +1,5 @@
 import { GatsbyNode } from 'gatsby'
-import { createAccessoryPages } from './accessoryPage'
+import { createAccessoryPages } from './accessoryPages'
 
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
