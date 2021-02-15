@@ -3,6 +3,6 @@
  *
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
-export { default as onCreateNode } from './node-utils/onCreateNode';
-export { default as createPages } from './node-utils/createPages';
+export { onCreateNode } from './node-utils/onCreateNode';
+export { createPages } from './node-utils/createPages';
 
