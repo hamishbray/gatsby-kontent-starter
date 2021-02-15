@@ -8,7 +8,13 @@ export const siteMetadata = {
 	author: '@hamishbray',
 }
 
+export const flags = {
+	FAST_DEV: true,
+  FAST_REFRESH: true,
+}
+
 export const plugins = [
+	'gatsby-plugin-postcss',
 	'gatsby-plugin-typescript',
 	'gatsby-plugin-react-helmet',
 	{
