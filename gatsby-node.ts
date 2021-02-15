@@ -4,5 +4,5 @@ import { Actions } from 'gatsby'
  *
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
-export { onCreateNode } from './node-utils/onCreateNode';
-export { createPages } from './node-utils/createPages';
+export { onCreateNode } from './src/node-utils/onCreateNode';
+export { createPages } from './src/node-utils/createPages';

@@ -4,7 +4,7 @@ import { PageProps } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-import { Accessory } from '../../node-utils/accessoryPage'
+import { Accessory } from '../node-utils/accessoryPage'
 
 interface Accessories {
 	accessories: Accessory[]

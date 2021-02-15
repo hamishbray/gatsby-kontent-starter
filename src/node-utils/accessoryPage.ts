@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { ElementModels } from '@kentico/kontent-delivery'
 
-import { AccessoryItem } from '../src/generated-models/accessory'
+import { AccessoryItem } from '../generated-models/accessory'
 
 type Fields = {
   slug: string
