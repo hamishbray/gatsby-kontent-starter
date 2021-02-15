@@ -1,12 +1,9 @@
 import { resolve } from 'path'
+import { Reporter } from 'gatsby'
 import { ElementModels } from '@kentico/kontent-delivery'
 
+import { AllKontentResult } from './types'
 import { AccessoryItem } from '../generated-models/accessory'
-
-type Fields = {
-  slug: string
-}
-
 export interface Accessory {
   manufacturer?: string
   price?: number | null | undefined
@@ -18,28 +15,11 @@ export interface Accessory {
   slug: string
 }
 
-interface Nodes {
-  node: {
-    fields: Fields
-    elements: AccessoryItem
-  }
-}
 
-interface AllKontentItemAccessory {
-  allKontentItemAccessory: {
-    edges: Nodes[]
-  }
-}
-
-interface AllKontentItemAccessoryResult {
-  errors?: any
-  data?: AllKontentItemAccessory
-}
-
-export const createAccessoryPages = async (createPage: any, graphql: any) => {
-  const result: AllKontentItemAccessoryResult = await graphql(`
+export const createAccessoryPages = async (createPage: any, graphql: any, reporter: Reporter) => {
+  const result: AllKontentResult<AccessoryItem, 'allAccessories'> = await graphql(`
     {
-      allKontentItemAccessory {
+      allAccessories: allKontentItemAccessory {
         edges {
           node {
             fields {
@@ -83,8 +63,12 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
     }
   `)
 
+	if (result.errors) {
+		reporter.panicOnBuild(`Error while running Accessory GraphQL query.`)
+		return
+	}
 
-  const accessories = result.data?.allKontentItemAccessory.edges.map(
+  const accessories = result.data?.allAccessories.edges.map(
     ({ node }) => parseAccessory(node.elements)
   )
 
