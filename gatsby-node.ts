@@ -1,3 +1,4 @@
+import { Actions } from 'gatsby'
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -5,4 +6,3 @@
  */
 export { onCreateNode } from './node-utils/onCreateNode';
 export { createPages } from './node-utils/createPages';
-

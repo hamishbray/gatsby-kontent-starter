@@ -83,8 +83,8 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
     }
   `)
 
-	//@ts-ignore
-  const accessories = result.data.allKontentItemAccessory.edges.map(
+
+  const accessories = result.data?.allKontentItemAccessory.edges.map(
     ({ node }) => parseAccessory(node.elements)
   )
 
@@ -98,7 +98,7 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
   })
 
   // Accessory Pages
-  accessories.forEach(accessory => {
+  accessories?.forEach(accessory => {
     createPage({
       path: `/accessories/${accessory.slug}`,
       component: resolve(`src/templates/accessory.tsx`),
@@ -110,12 +110,12 @@ export const createAccessoryPages = async (createPage: any, graphql: any) => {
 }
 
 const parseAccessory = (accessory: AccessoryItem): Accessory => ({
-  manufacturer: accessory.manufacturer ? accessory.manufacturer.value : '',
-  price: accessory.price ? accessory.price.value : undefined,
+  manufacturer: accessory.manufacturer?.value,
+  price: accessory.price?.value,
   productName: accessory.product_name.value,
   productStatus: accessory.product_status.value,
   longDescription: accessory.long_description.value,
   shortDescription: accessory.short_description.value,
   slug: accessory.url_pattern.value,
-  image: accessory.image ? accessory.image.value[0] : undefined,
+  image: accessory.image?.value[0],
 })
