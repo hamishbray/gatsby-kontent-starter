@@ -2,21 +2,32 @@ import React from 'react';
 import { PageProps, graphql } from 'gatsby'
 
 import Layout from '../components/layout';
-import { Article } from '../node-utils/articlePages';
+import { ArticleItem, parseArticle } from '../node-utils/articlePages';
 
 interface Props {
-	pageContext: PageProps & Article
+	data: {
+		article: {
+			elements: ArticleItem
+		}
+	}
 }
 
-const ArticlePage: React.FC = ({ data }: any) => (
-	<Layout>
-		<div className="article">
-			<div>
-				<h1>{data.article.elements.title.value}</h1>
-			</div>
-		</div>
-	</Layout>
-)
+const ArticlePage: React.FC<Props> = ({ data }: Props) => {
+	const { title, teaserImage, bodyCopy, postDate } = parseArticle(data.article.elements)
+
+	return (
+		<Layout>
+			<article className="article">
+				<div>
+					<h1>{title}</h1>
+					<img width={teaserImage?.width} height={teaserImage?.height} src={teaserImage?.url} alt={teaserImage?.description} />
+					<p>Posted: {postDate}</p>
+					<div dangerouslySetInnerHTML={{ __html: bodyCopy ?? '' }} />
+				</div>
+			</article>
+		</Layout>
+	)
+}
 
 export const query = graphql`
 	query articleBySlug($slug: String!) {
@@ -38,7 +49,7 @@ export const query = graphql`
 					}
 				}
 				post_date {
-					value
+					value(formatString: "MMM Do, YYYY")
 				}
 				related_articles {
 					value {
@@ -52,6 +63,8 @@ export const query = graphql`
 					value {
 						description
 						url
+						height
+          	width
 					}
 				}
 				title {
