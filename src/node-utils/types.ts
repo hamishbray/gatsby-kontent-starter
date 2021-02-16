@@ -15,13 +15,12 @@ type AllKontentItem<T, U extends string> = {
   }
 }
 
-export interface KontentResult<T, U extends string> {
+export type KontentResult<T, N extends string> = {
   errors?: any
-  data?: KontentItem<T, U>
+  data?: KontentItem<T, N>
 }
 
-export interface AllKontentResult<T, U extends string> {
+export type AllKontentResult<T, U extends string> = {
   errors?: any
   data?: AllKontentItem<T, U>
 }
-
