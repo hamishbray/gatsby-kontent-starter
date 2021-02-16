@@ -1,7 +1,7 @@
 import { Elements, ElementModels } from '@kentico/kontent-delivery'
 
 export interface AccessoryItem {
-	manufacturer: Elements.TextElement
+  manufacturer: Elements.TextElement
   price: Elements.NumberElement
   product_name: Elements.TextElement
   product_status: Elements.TaxonomyElement

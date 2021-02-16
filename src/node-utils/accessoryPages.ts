@@ -4,8 +4,15 @@ import { Reporter } from 'gatsby'
 import { AllKontentResult } from './types'
 import { AccessoryItem, parseAccessory } from '../models/accessory'
 
-export const createAccessoryPages = async (createPage: any, graphql: any, reporter: Reporter) => {
-  const result: AllKontentResult<AccessoryItem, 'allAccessories'> = await graphql(`
+export const createAccessoryPages = async (
+  createPage: any,
+  graphql: any,
+  reporter: Reporter
+) => {
+  const result: AllKontentResult<
+    AccessoryItem,
+    'allAccessories'
+  > = await graphql(`
     {
       allAccessories: allKontentItemAccessory {
         edges {
@@ -51,13 +58,13 @@ export const createAccessoryPages = async (createPage: any, graphql: any, report
     }
   `)
 
-	if (result.errors) {
-		reporter.panicOnBuild(`Error while running Accessory GraphQL query.`)
-		return
-	}
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running Accessory GraphQL query.`)
+    return
+  }
 
-  const accessories = result.data?.allAccessories.edges.map(
-    ({ node }) => parseAccessory(node.elements)
+  const accessories = result.data?.allAccessories.edges.map(({ node }) =>
+    parseAccessory(node.elements)
   )
 
   // All Accessories Page
