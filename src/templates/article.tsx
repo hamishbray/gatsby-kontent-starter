@@ -1,19 +1,16 @@
 import React from 'react';
-import { PageProps, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout';
-import { ArticleItem, parseArticle } from '../node-utils/articlePages';
+import Layout from '../components/layout'
+import { ArticleItem, parseArticle } from '../models/article'
+import { KontentItem } from '../node-utils/types'
 
-interface Props {
-	data: {
-		article: {
-			elements: ArticleItem
-		}
-	}
+type Props = {
+	data: KontentItem<ArticleItem, 'articleItem'>
 }
 
 const ArticlePage: React.FC<Props> = ({ data }: Props) => {
-	const { title, teaserImage, bodyCopy, postDate } = parseArticle(data.article.elements)
+	const { title, teaserImage, bodyCopy, postDate } = parseArticle(data.articleItem.elements)
 
 	return (
 		<Layout>
@@ -29,9 +26,11 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 	)
 }
 
+export default ArticlePage;
+
 export const query = graphql`
 	query articleBySlug($slug: String!) {
-		article: kontentItemArticle(fields: { slug: { eq: $slug } }) {
+		articleItem: kontentItemArticle(fields: { slug: { eq: $slug } }) {
 			fields {
         slug
       }
@@ -74,5 +73,3 @@ export const query = graphql`
 		}
 	}
 `
-
-export default ArticlePage;

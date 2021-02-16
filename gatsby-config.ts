@@ -4,7 +4,7 @@ require('dotenv').config({
 
 export const siteMetadata = {
 	title: 'Gatsby Kentico Kontent POC',
-	description: 'Gatsby start site with Kentico Kontent source',
+	description: 'Gatsby starter site with Kentico Kontent source',
 	author: '@hamishbray',
 }
 

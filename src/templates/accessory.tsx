@@ -2,9 +2,9 @@ import React from 'react';
 import { PageProps } from 'gatsby'
 
 import Layout from '../components/layout';
-import { Accessory } from '../node-utils/accessoryPages';
+import { Accessory } from '../models/accessory';
 
-interface Props {
+type Props = {
 	pageContext: PageProps & Accessory
 }
 

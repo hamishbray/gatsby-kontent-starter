@@ -2,29 +2,26 @@ type Fields = {
   slug: string
 }
 
-interface Nodes<T> {
-  node: {
+export type KontentItem<T, N extends string = 'node'> = {
+  [n in N]: {
     fields: Fields
     elements: T
   }
 }
 
-interface KontentItem<T, U> {
-  [U: string]: Nodes<T>
-}
-
-interface AllKontentItem<T, U> {
-  [U: string]: {
-    edges: Nodes<T>[]
+type AllKontentItem<T, U extends string> = {
+  [u in U]: {
+    edges: KontentItem<T>[]
   }
 }
 
-export interface AllKontentResult<T, U> {
+export interface KontentResult<T, U extends string> {
+  errors?: any
+  data?: KontentItem<T, U>
+}
+
+export interface AllKontentResult<T, U extends string> {
   errors?: any
   data?: AllKontentItem<T, U>
 }
 
-export interface KontentResult<T, U> {
-  errors?: any
-  data?: KontentItem<T, U>
-}

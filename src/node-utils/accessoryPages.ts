@@ -1,20 +1,8 @@
 import { resolve } from 'path'
 import { Reporter } from 'gatsby'
-import { ElementModels } from '@kentico/kontent-delivery'
 
 import { AllKontentResult } from './types'
-import { AccessoryItem } from '../generated-models/accessory'
-export interface Accessory {
-  manufacturer?: string
-  price?: number | null | undefined
-  productName: string
-  productStatus: ElementModels.TaxonomyTerm[]
-  longDescription: string
-  shortDescription: string
-  image?: ElementModels.AssetModel
-  slug: string
-}
-
+import { AccessoryItem, parseAccessory } from '../models/accessory'
 
 export const createAccessoryPages = async (createPage: any, graphql: any, reporter: Reporter) => {
   const result: AllKontentResult<AccessoryItem, 'allAccessories'> = await graphql(`
@@ -92,14 +80,3 @@ export const createAccessoryPages = async (createPage: any, graphql: any, report
     })
   })
 }
-
-const parseAccessory = (accessory: AccessoryItem): Accessory => ({
-  manufacturer: accessory.manufacturer?.value,
-  price: accessory.price?.value,
-  productName: accessory.product_name.value,
-  productStatus: accessory.product_status.value,
-  longDescription: accessory.long_description.value,
-  shortDescription: accessory.short_description.value,
-  slug: accessory.url_pattern.value,
-  image: accessory.image?.value[0],
-})
