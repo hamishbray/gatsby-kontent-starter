@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageProps } from 'gatsby'
+import { Link, PageProps } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -21,9 +21,9 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
     <div className="accessories">
       {pageContext.accessories?.map((accessory, index) => (
         <div key={index}>
-          <a href={`/accessories/${accessory.slug}`}>
+          <Link to={`/accessories/${accessory.slug}`}>
             <h2>{accessory.productName}</h2>
-          </a>
+          </Link>
           <img
             width="150"
             height="150"
