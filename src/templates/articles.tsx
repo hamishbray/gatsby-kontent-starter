@@ -16,8 +16,8 @@ type Props = {
 
 const Articles: React.FC<Props> = ({ pageContext }: Props) => (
   <Layout>
-    <SEO title="Coffee Accessories" />
-    <h1>Articles</h1>
+    <SEO title="Coffee Articles" />
+    <h1>Coffee Articles</h1>
     <div className="accessories">
       {pageContext.articles?.map((article, index) => (
         <div key={index}>
