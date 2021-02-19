@@ -15,44 +15,42 @@ export const createAccessoryPages = async (
   > = await graphql(`
     {
       allAccessories: allKontentItemAccessory {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            elements {
-              manufacturer {
-                value
-              }
-              price {
-                value
-              }
-              product_name {
-                value
-              }
-              long_description {
-                value
-              }
-              short_description {
-                value
-              }
-              image {
-                value {
-                  description
-                  url
-                }
-              }
-              url_pattern {
-                value
-              }
-              product_status {
-                value {
-                  codename
-                  name
-                }
-              }
-            }
-          }
+        nodes {
+					fields {
+						slug
+					}
+					elements {
+						manufacturer {
+							value
+						}
+						price {
+							value
+						}
+						product_name {
+							value
+						}
+						long_description {
+							value
+						}
+						short_description {
+							value
+						}
+						image {
+							value {
+								description
+								url
+							}
+						}
+						url_pattern {
+							value
+						}
+						product_status {
+							value {
+								codename
+								name
+							}
+						}
+					}
         }
       }
     }
@@ -63,8 +61,8 @@ export const createAccessoryPages = async (
     return
   }
 
-  const accessories = result.data?.allAccessories.edges.map(({ node }) =>
-    parseAccessory(node.elements)
+  const accessories = result.data?.allAccessories.nodes.map(({ elements }) =>
+    parseAccessory(elements)
   )
 
   // All Accessories Page

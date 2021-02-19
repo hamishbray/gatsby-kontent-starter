@@ -3,15 +3,13 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import { ArticleItem, parseArticle } from '../models/article'
-import { KontentItem } from '../node-utils/types'
+import { KontentResult } from '../node-utils/types'
 
-type Props = {
-  data: KontentItem<ArticleItem, 'articleItem'>
-}
+type Props = KontentResult<ArticleItem, 'articleItem'>
 
 const ArticlePage: React.FC<Props> = ({ data }: Props) => {
   const { title, teaserImage, bodyCopy, postDate } = parseArticle(
-    data.articleItem.elements
+    data?.articleItem.elements ?? {} as ArticleItem
   )
 
   return (

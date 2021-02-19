@@ -12,17 +12,15 @@ export const createArticlePages = async (
   const result: AllKontentResult<ArticleItem, 'allArticles'> = await graphql(`
     {
       allArticles: allKontentItemArticle {
-        edges {
-          node {
-            fields {
-              slug
-            }
-            elements {
-              title {
-                value
-              }
-            }
-          }
+        nodes {
+					fields {
+						slug
+					}
+					elements {
+						title {
+							value
+						}
+					}
         }
       }
     }
@@ -34,9 +32,9 @@ export const createArticlePages = async (
   }
 
   const articles: Article[] =
-    result.data?.allArticles.edges.map(({ node }) => ({
-      slug: node.fields.slug,
-      title: node.elements.title?.value,
+    result.data?.allArticles.nodes.map(({ fields, elements }) => ({
+      slug: fields.slug,
+      title: elements.title?.value,
     })) ?? []
 
   createPage({

@@ -2,22 +2,22 @@ type Fields = {
   slug: string
 }
 
-export type KontentItem<T, N extends string = 'node'> = {
-  [n in N]: {
-    fields: Fields
-    elements: T
-  }
+export type KontentItem<T> = {
+	fields: Fields
+	elements: T
 }
 
 type AllKontentItem<T, U extends string> = {
   [u in U]: {
-    edges: KontentItem<T>[]
+    nodes: KontentItem<T>[]
   }
 }
 
 export type KontentResult<T, N extends string> = {
   errors?: any
-  data?: KontentItem<T, N>
+  data?: {
+		[n in N]: KontentItem<T>
+	}
 }
 
 export type AllKontentResult<T, U extends string> = {
