@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import { createFilePath } from 'gatsby-source-filesystem'
 
 import Layout from '../../components/layout'
 import SEO from '../../components/seo'

@@ -1,6 +1,8 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
+import Layout from '../../components/layout'
+import SEO from '../../components/seo'
 import { KontentResult } from '../../node-utils/types'
 import { CafeItem, parseCafe } from '../../models/cafe'
 
@@ -11,7 +13,8 @@ const CafePage: React.FC<Props> = ({ data }: Props) => {
     data?.cafeItem.elements ?? {} as CafeItem
   )
 	return (
-		<div>
+		<Layout>
+			<SEO title={`Cafe - ${city ?? ''}`} />
 			<h1>{city}</h1>
 			<img
 				width={photo?.width}
@@ -28,7 +31,7 @@ const CafePage: React.FC<Props> = ({ data }: Props) => {
 			</span>
 			<span className="block">Email: {email}</span>
 			<span className="block">Phone: {phone}</span>
-		</div>
+		</Layout>
 	)
 }
 
