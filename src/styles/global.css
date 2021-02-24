@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-	h1 {
-		@apply mb-8 text-5xl;
-	}
+  h1 {
+    @apply mb-8 text-5xl;
+  }
 
-	h2 {
-		@apply my-4 text-2xl;
-	}
+  h2 {
+    @apply my-4 text-2xl;
+  }
 
-	p {
-		@apply mb-2
-	}
+  p {
+    @apply mb-2;
+  }
 }

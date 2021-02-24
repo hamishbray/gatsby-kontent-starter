@@ -17,14 +17,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     })
   }
 
-	if(node.internal.type === `kontent_item_cafe`) {
-		createNodeField({
-			node,
-			name: `slug`,
-			//@ts-ignore
+  if (node.internal.type === `kontent_item_cafe`) {
+    createNodeField({
+      node,
+      name: `slug`,
+      //@ts-ignore
       value: slugify(node.elements.city.value),
-		})
-	}
+    })
+  }
 }
 
 export default onCreateNode

@@ -19,7 +19,7 @@ const CafePage: React.FC<Props> = ({ data }: Props) => {
     street,
     zipCode,
   } = parseCafe(data?.cafeItem.elements ?? ({} as CafeItem))
-	
+
   return (
     <Layout>
       <SEO title={`Cafe - ${city ?? ''}`} />
@@ -30,18 +30,22 @@ const CafePage: React.FC<Props> = ({ data }: Props) => {
         src={photo?.url}
         alt={photo?.description}
       />
-			<div className="mt-8">
-				<span className="block">
-					<span className="italic">Address:</span>
-					{street && <span> {street}</span>}
-					{city && <span> {city}</span>}
-					{state && <span> {state}</span>}
-					{country && <span> {country}</span>}
-					{zipCode && <span> {zipCode}</span>}
-				</span>
-				<span className="block"><span className="italic">Email:</span> {email}</span>
-				<span className="block"><span className="italic">Phone:</span> {phone}</span>
-			</div>
+      <div className="mt-8">
+        <span className="block">
+          <span className="italic">Address:</span>
+          {street && <span> {street}</span>}
+          {city && <span> {city}</span>}
+          {state && <span> {state}</span>}
+          {country && <span> {country}</span>}
+          {zipCode && <span> {zipCode}</span>}
+        </span>
+        <span className="block">
+          <span className="italic">Email:</span> {email}
+        </span>
+        <span className="block">
+          <span className="italic">Phone:</span> {phone}
+        </span>
+      </div>
     </Layout>
   )
 }

@@ -9,7 +9,7 @@ type Props = KontentResult<ArticleItem, 'articleItem'>
 
 const ArticlePage: React.FC<Props> = ({ data }: Props) => {
   const { title, teaserImage, bodyCopy, postDate } = parseArticle(
-    data?.articleItem.elements ?? {} as ArticleItem
+    data?.articleItem.elements ?? ({} as ArticleItem)
   )
 
   return (

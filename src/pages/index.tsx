@@ -8,10 +8,9 @@ import SEO from '../components/seo'
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-		<h1>Welcome!</h1>
+    <h1>Welcome!</h1>
     <Link to="/accessories/">Accessories</Link> |{' '}
-    <Link to="/articles/">Articles</Link> |{' '}
-		<Link to="/cafes/">Cafes</Link>
+    <Link to="/articles/">Articles</Link> | <Link to="/cafes/">Cafes</Link>
   </Layout>
 )
 

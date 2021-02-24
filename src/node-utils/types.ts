@@ -3,9 +3,9 @@ export type Fields = {
 }
 
 export type KontentItem<T> = {
-	fields: Fields
-	elements: T
-	id: string
+  fields: Fields
+  elements: T
+  id: string
 }
 
 type AllKontentItem<T, U extends string> = {
@@ -17,8 +17,8 @@ type AllKontentItem<T, U extends string> = {
 export type KontentResult<T, N extends string> = {
   errors?: any
   data?: {
-		[n in N]: KontentItem<T>
-	}
+    [n in N]: KontentItem<T>
+  }
 }
 
 export type AllKontentResult<T, U extends string> = {

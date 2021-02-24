@@ -13,14 +13,14 @@ export const createArticlePages = async (
     {
       allArticles: allKontentItemArticle {
         nodes {
-					fields {
-						slug
-					}
-					elements {
-						title {
-							value
-						}
-					}
+          fields {
+            slug
+          }
+          elements {
+            title {
+              value
+            }
+          }
         }
       }
     }

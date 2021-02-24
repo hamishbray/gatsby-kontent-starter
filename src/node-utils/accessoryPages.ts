@@ -16,41 +16,41 @@ export const createAccessoryPages = async (
     {
       allAccessories: allKontentItemAccessory {
         nodes {
-					fields {
-						slug
-					}
-					elements {
-						manufacturer {
-							value
-						}
-						price {
-							value
-						}
-						product_name {
-							value
-						}
-						long_description {
-							value
-						}
-						short_description {
-							value
-						}
-						image {
-							value {
-								description
-								url
-							}
-						}
-						url_pattern {
-							value
-						}
-						product_status {
-							value {
-								codename
-								name
-							}
-						}
-					}
+          fields {
+            slug
+          }
+          elements {
+            manufacturer {
+              value
+            }
+            price {
+              value
+            }
+            product_name {
+              value
+            }
+            long_description {
+              value
+            }
+            short_description {
+              value
+            }
+            image {
+              value {
+                description
+                url
+              }
+            }
+            url_pattern {
+              value
+            }
+            product_status {
+              value {
+                codename
+                name
+              }
+            }
+          }
         }
       }
     }

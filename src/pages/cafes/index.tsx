@@ -17,21 +17,21 @@ const CafesPage: React.FC<Props> = ({ data }: Props) => {
     <Layout>
       <SEO title="Cafes" />
       <h1>Our Cafes</h1>
-			<div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 sm:gap-4">
-				{cafes?.map(({ city, photo, slug }, index) => (
-					<Link key={index} to={`/cafes/${slug}`}>
-						<div  className="px-4 pb-4 shadow">
-							<h2>{city}</h2>
-							<img
-								width={photo?.width}
-								height={photo?.height}
-								src={photo?.url}
-								alt={photo?.description}
-							/>
-						</div>
-					</Link>
-				))}
-			</div>
+      <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 sm:gap-4">
+        {cafes?.map(({ city, photo, slug }, index) => (
+          <Link key={index} to={`/cafes/${slug}`}>
+            <div className="px-4 pb-4 shadow">
+              <h2>{city}</h2>
+              <img
+                width={photo?.width}
+                height={photo?.height}
+                src={photo?.url}
+                alt={photo?.description}
+              />
+            </div>
+          </Link>
+        ))}
+      </div>
     </Layout>
   )
 }

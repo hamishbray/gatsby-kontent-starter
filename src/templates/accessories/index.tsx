@@ -22,15 +22,15 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
       {pageContext.accessories?.map((accessory, index) => (
         <div key={index} className="px-4 pb-4 shadow">
           <Link to={`/accessories/${accessory.slug}`}>
-						<img
-							src={accessory.image?.url}
-							alt={accessory.image?.description}
-						/>
-						<h2>{accessory.productName}</h2>
-						<div
-							dangerouslySetInnerHTML={{ __html: accessory.shortDescription }}
-						/>
-					</Link>
+            <img
+              src={accessory.image?.url}
+              alt={accessory.image?.description}
+            />
+            <h2>{accessory.productName}</h2>
+            <div
+              dangerouslySetInnerHTML={{ __html: accessory.shortDescription }}
+            />
+          </Link>
         </div>
       ))}
     </div>
