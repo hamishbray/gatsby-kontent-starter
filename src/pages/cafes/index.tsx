@@ -9,25 +9,29 @@ import { CafeItem, parseCafe } from '../../models/cafe'
 type Props = AllKontentResult<CafeItem, 'cafes'>
 
 const CafesPage: React.FC<Props> = ({ data }: Props) => {
-  const cafes = data?.cafes.nodes.map(({ elements, fields }) => parseCafe(elements, fields))
+  const cafes = data?.cafes.nodes.map(({ elements, fields }) =>
+    parseCafe(elements, fields)
+  )
 
   return (
     <Layout>
       <SEO title="Cafes" />
       <h1>Our Cafes</h1>
-      {cafes?.map(({ city, photo, slug }, index) => (
-        <div key={index}>
-          <Link to={`/cafes/${slug}`}>
-            <h2>{city}</h2>
-          </Link>
-          <img
-            width={photo?.width}
-            height={photo?.height}
-            src={photo?.url}
-            alt={photo?.description}
-          />
-        </div>
-      ))}
+			<div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 sm:gap-4">
+				{cafes?.map(({ city, photo, slug }, index) => (
+					<Link key={index} to={`/cafes/${slug}`}>
+						<div  className="px-4 pb-4 shadow">
+							<h2>{city}</h2>
+							<img
+								width={photo?.width}
+								height={photo?.height}
+								src={photo?.url}
+								alt={photo?.description}
+							/>
+						</div>
+					</Link>
+				))}
+			</div>
     </Layout>
   )
 }
@@ -38,9 +42,9 @@ export const query = graphql`
   {
     cafes: allKontentItemCafe {
       nodes {
-				fields {
-					slug
-				}
+        fields {
+          slug
+        }
         elements {
           city {
             value

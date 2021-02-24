@@ -16,14 +16,14 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
     <Layout>
       <article className="article">
         <div>
-          <h1 className="text-3xl">{title}</h1>
+          <h1>{title}</h1>
           <img
             width={teaserImage?.width}
             height={teaserImage?.height}
             src={teaserImage?.url}
             alt={teaserImage?.description}
           />
-          <p>Posted: {postDate}</p>
+          <p className="mt-4 italic">Posted: {postDate}</p>
           <div dangerouslySetInnerHTML={{ __html: bodyCopy ?? '' }} />
         </div>
       </article>

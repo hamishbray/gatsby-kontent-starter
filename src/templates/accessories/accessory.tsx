@@ -14,8 +14,8 @@ const AccessoryPage: React.FC<Props> = ({ pageContext }: Props) => (
       <div>
         <h1>{pageContext.productName}</h1>
         <img
-          width="150"
-          height="150"
+          width="300"
+          height="300"
           src={pageContext.image?.url}
           alt={pageContext.image?.description}
         />

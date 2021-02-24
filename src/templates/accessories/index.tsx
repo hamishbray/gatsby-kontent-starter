@@ -18,21 +18,19 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
   <Layout>
     <SEO title="Coffee Accessories" />
     <h1>Accessories</h1>
-    <div className="accessories">
+    <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 md:gap-4 accessories">
       {pageContext.accessories?.map((accessory, index) => (
-        <div key={index}>
+        <div key={index} className="px-4 pb-4 shadow">
           <Link to={`/accessories/${accessory.slug}`}>
-            <h2>{accessory.productName}</h2>
-          </Link>
-          <img
-            width="150"
-            height="150"
-            src={accessory.image?.url}
-            alt={accessory.image?.description}
-          />
-          <div
-            dangerouslySetInnerHTML={{ __html: accessory.shortDescription }}
-          />
+						<img
+							src={accessory.image?.url}
+							alt={accessory.image?.description}
+						/>
+						<h2>{accessory.productName}</h2>
+						<div
+							dangerouslySetInnerHTML={{ __html: accessory.shortDescription }}
+						/>
+					</Link>
         </div>
       ))}
     </div>
