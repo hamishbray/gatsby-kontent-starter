@@ -68,7 +68,7 @@ export const createAccessoryPages = async (
   // All Accessories Page
   createPage({
     path: `/accessories`,
-    component: resolve(`src/templates/accessories.tsx`),
+    component: resolve(`src/templates/accessories/index.tsx`),
     context: {
       accessories,
     },
@@ -78,7 +78,7 @@ export const createAccessoryPages = async (
   accessories?.forEach(accessory => {
     createPage({
       path: `/accessories/${accessory.slug}`,
-      component: resolve(`src/templates/accessory.tsx`),
+      component: resolve(`src/templates/accessories/accessory.tsx`),
       context: {
         ...accessory,
       },

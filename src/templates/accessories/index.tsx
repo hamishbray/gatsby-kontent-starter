@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, PageProps } from 'gatsby'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../../components/layout'
+import SEO from '../../components/seo'
 
-import { Accessory } from '../models/accessory'
+import { Accessory } from '../../models/accessory'
 
 type Accessories = {
   accessories: Accessory[]

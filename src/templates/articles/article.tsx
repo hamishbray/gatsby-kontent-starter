@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import { ArticleItem, parseArticle } from '../models/article'
-import { KontentResult } from '../node-utils/types'
+import Layout from '../../components/layout'
+import { ArticleItem, parseArticle } from '../../models/article'
+import { KontentResult } from '../../node-utils/types'
 
 type Props = KontentResult<ArticleItem, 'articleItem'>
 

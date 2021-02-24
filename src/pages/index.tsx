@@ -1,9 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import { Link } from 'gatsby'
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import Image from '../components/image'
+import SEO from '../components/seo'
 
 const IndexPage = () => (
   <Layout>
@@ -14,7 +14,9 @@ const IndexPage = () => (
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
-    <Link to="/accessories/">Accessories</Link> | <Link to="/articles/">Articles</Link>
+    <Link to="/accessories/">Accessories</Link> |{' '}
+    <Link to="/articles/">Articles</Link> |{' '}
+		<Link to="/cafes/">Cafes</Link>
   </Layout>
 )
 

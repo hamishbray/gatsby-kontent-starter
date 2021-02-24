@@ -1,8 +1,8 @@
 import React from 'react'
 import { PageProps } from 'gatsby'
 
-import Layout from '../components/layout'
-import { Accessory } from '../models/accessory'
+import Layout from '../../components/layout'
+import { Accessory } from '../../models/accessory'
 
 type Props = {
   pageContext: PageProps & Accessory

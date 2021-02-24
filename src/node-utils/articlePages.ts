@@ -39,7 +39,7 @@ export const createArticlePages = async (
 
   createPage({
     path: `articles`,
-    component: resolve(`src/templates/articles.tsx`),
+    component: resolve(`src/templates/articles/index.tsx`),
     context: {
       articles,
     },
@@ -48,7 +48,7 @@ export const createArticlePages = async (
   articles?.forEach(article => {
     createPage({
       path: `/articles/${article.slug}`,
-      component: resolve(`src/templates/article.tsx`),
+      component: resolve(`src/templates/articles/article.tsx`),
       context: {
         slug: article.slug,
       },

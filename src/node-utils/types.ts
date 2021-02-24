@@ -1,10 +1,11 @@
-type Fields = {
+export type Fields = {
   slug: string
 }
 
 export type KontentItem<T> = {
 	fields: Fields
 	elements: T
+	id: string
 }
 
 type AllKontentItem<T, U extends string> = {

@@ -1,4 +1,5 @@
 import { GatsbyNode } from 'gatsby'
+import slugify from '@sindresorhus/slugify'
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
@@ -15,6 +16,15 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
       value: node.elements.url_pattern.value,
     })
   }
+
+	if(node.internal.type === `kontent_item_cafe`) {
+		createNodeField({
+			node,
+			name: `slug`,
+			//@ts-ignore
+      value: slugify(node.elements.city.value),
+		})
+	}
 }
 
 export default onCreateNode
