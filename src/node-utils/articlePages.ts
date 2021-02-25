@@ -38,7 +38,7 @@ export const createArticlePages = async (
     })) ?? []
 
   createPage({
-    path: `articles`,
+    path: `/articles`,
     component: resolve(`src/templates/articles/index.tsx`),
     context: {
       articles,

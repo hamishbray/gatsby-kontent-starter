@@ -50,6 +50,12 @@ export const plugins = [
 			],
 		},
 	},
+	{
+		resolve: `gatsby-plugin-netlify-identity`,
+		options: {
+			url: `https://gatsby-kontent-starter.netlify.app/` // required!
+		}
+	},
 	// this (optional) plugin enables Progressive Web App + Offline functionality
 	// To learn more, visit: https://gatsby.dev/offline
 	// 'gatsby-plugin-offline',
