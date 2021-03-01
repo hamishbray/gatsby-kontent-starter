@@ -7,12 +7,12 @@ import Login from './login'
 import Profile from './profile'
 
 const Account: React.FC = () => (
-	<Layout>
-		<Router>
-			<PrivateRoute path="/account/profile" component={Profile} />
-			<Login path="/account/login" />
-		</Router>
-	</Layout>
+  <Layout>
+    <Router>
+      <PrivateRoute path="/account/profile" component={Profile} />
+      <Login path="/account/login" />
+    </Router>
+  </Layout>
 )
 
 export default Account

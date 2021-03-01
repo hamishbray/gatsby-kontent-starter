@@ -4,9 +4,9 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = ({
   page,
   actions: { createPage },
 }) => {
-	if (page.path.match(/^\/account/)) {
-		page.matchPath = '/account/*'
-	}
+  if (page.path.match(/^\/account/)) {
+    page.matchPath = '/account/*'
+  }
 
-	createPage(page)
+  createPage(page)
 }

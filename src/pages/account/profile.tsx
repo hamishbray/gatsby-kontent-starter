@@ -1,11 +1,14 @@
 import React from 'react'
+import { useIdentityContext } from 'react-netlify-identity-widget'
 
-import { user } from '../../services/auth'
+const Profile: React.FC = () => { 
+	const { user } = useIdentityContext()
 
-const Profile: React.FC = () => (
-	<>
-		<h1>Hi {user()?.user_metadata?.full_name}!</h1>
-	</>
-)
+	return (
+		<>
+			<h1>Hi {user?.user_metadata?.full_name}!</h1>
+		</>
+	)
+}
 
 export default Profile

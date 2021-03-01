@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { ReactNetlifyIdentityAPI } from 'react-netlify-identity'
+import { useIdentityContext } from 'react-netlify-identity-widget'
 
-interface Props {
+type Props = {
   siteTitle: string
-  identity: ReactNetlifyIdentityAPI
   setDialog: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Header = ({ siteTitle, identity, setDialog }: Props) => {
-  const name = identity?.user?.user_metadata?.full_name ?? 'NoName'
-  const isLoggedIn = identity?.isLoggedIn
+const Header = ({ siteTitle, setDialog }: Props) => {
+	const { user, isLoggedIn } = useIdentityContext() 
+  const name = user?.user_metadata?.full_name ?? 'NoName'
+
   return (
     <header className="mb-6 bg-yellow-900">
       <div className="flex max-w-screen-lg px-4 py-8 mx-auto">

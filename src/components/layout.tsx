@@ -7,9 +7,8 @@
 
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import IdentityModal, {
-  useIdentityContext,
-} from 'react-netlify-identity-widget'
+import IdentityModal from 'react-netlify-identity-widget'
+
 import '@reach/tabs/styles.css'
 import 'react-netlify-identity-widget/styles.css'
 
@@ -20,7 +19,6 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  const identity = useIdentityContext()
   const [dialog, setDialog] = useState(false)
 
   const data = useStaticQuery(graphql`
@@ -41,7 +39,6 @@ const Layout = ({ children }: Props) => {
         siteTitle={
           data.kontentItemHome.elements.metadata__meta_title.value || `Title`
         }
-				identity={identity}
 				setDialog={setDialog}
       />
       <div className="box-border max-w-screen-lg px-4 py-8 mx-auto">

@@ -45,12 +45,12 @@ export const createArticlePages = async (
     },
   })
 
-  articles?.forEach(article => {
+  articles?.forEach(({ slug }) => {
     createPage({
-      path: `/articles/${article.slug}`,
+      path: `/articles/${slug}`,
       component: resolve(`src/templates/articles/article.tsx`),
       context: {
-        slug: article.slug,
+        slug,
       },
     })
   })

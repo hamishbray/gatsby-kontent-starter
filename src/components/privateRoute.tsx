@@ -1,7 +1,6 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-
-import { isLoggedIn } from '../services/auth'
+import { useIdentityContext } from 'react-netlify-identity-widget'
 
 type Props = {
   component: React.FC<any>
@@ -13,7 +12,9 @@ const PrivateRoute: React.FC<any> = ({
   location,
   ...rest
 }: Props): JSX.Element | null => {
-  if (!isLoggedIn() && location.pathname !== `/account/login`) {
+	const { isLoggedIn } = useIdentityContext()
+
+  if (!isLoggedIn && location.pathname !== `/account/login`) {
     navigate('/account/login')
     return null
   }
