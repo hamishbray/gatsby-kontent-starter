@@ -87,7 +87,8 @@ export const plugins = [
 					settings: {
 						searchableAttributes: ['title', 'type'],
 					},
-					transformer: ({ data }: { data: any }) => data.allSearchableItem.nodes,
+					transformer: ({ data }: { data: any }) => 
+						data.allSearchableItem.edges.map(({ node }: { node: any }) => node),
 				},
 			],
 			enablePartialUpdates: true,
