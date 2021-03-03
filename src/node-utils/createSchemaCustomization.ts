@@ -71,7 +71,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       content: String!
       modified: Date! @dateformat
       modified_unix: Int!
-      published: Date @dateformat!
+      published: Date! @dateformat
       published_unix: Int!
       tags: [String!]
       title: String!
