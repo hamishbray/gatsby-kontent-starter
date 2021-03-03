@@ -9,8 +9,7 @@ export const siteMetadata = {
 }
 
 export const flags = {
-	FAST_DEV: true,
-  FAST_REFRESH: true,
+  FAST_DEV: true,
 }
 
 export const plugins = [
@@ -24,6 +23,7 @@ export const plugins = [
 			path: `${__dirname}/src/images`,
 		},
 	},
+	'gatsby-plugin-image',
 	'gatsby-transformer-sharp',
 	'gatsby-plugin-sharp',
 	{
