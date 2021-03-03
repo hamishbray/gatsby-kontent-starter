@@ -9,6 +9,7 @@
     "@kentico/kontent-delivery": "^10.3.0",
     "gatsby": "^3.0.0",
     "gatsby-image": "^3.0.0",
+    "gatsby-plugin-algolia": "^0.16.3",
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-manifest": "^3.0.0",
     "gatsby-plugin-netlify-identity": "^0.0.3",

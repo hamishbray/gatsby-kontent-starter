@@ -1,30 +1,78 @@
+// @ts-nocheck - lots of unknown types below. e.g. node.elements
 import { GatsbyNode } from 'gatsby'
 import slugify from '@sindresorhus/slugify'
+import crypto from 'crypto'
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
-  actions: { createNodeField },
+  actions: { createNodeField, createNode, createParentChildLink },
+  createNodeId,
 }) => {
-  if (
-    node.internal.type === `kontent_item_accessory` ||
-    node.internal.type === `kontent_item_article`
-  ) {
+	const createSlugField = (value: string): void =>
     createNodeField({
       node,
       name: `slug`,
-      //@ts-ignore
-      value: node.elements.url_pattern.value,
+      value,
     })
-  }
 
-  if (node.internal.type === `kontent_item_cafe`) {
-    createNodeField({
-      node,
-      name: `slug`,
-      //@ts-ignore
-      value: slugify(node.elements.city.value),
-    })
+	const createSearchableItemNode = (typeFieldData: Object): void => {
+		const fieldData = {
+			modified: node.system.last_modified,
+			modified_unix: toUnix(node.system.last_modified),
+			type: node.system.type,
+			...typeFieldData,
+		}
+
+		const nodeData = {
+			...fieldData,
+			id: createNodeId(`${node.id}__SearchableItem`),
+			parent: node.id,
+			children: [],
+			internal: {
+				type: 'SearchableItem',
+				contentDigest: crypto
+					.createHash(`md5`)
+					.update(JSON.stringify(fieldData))
+					.digest(`hex`),
+			},
+		}
+
+		createNode(nodeData)
+		createParentChildLink({ parent: node, child: nodeData})
+	}
+
+	let typeFieldData = {}
+
+  switch (node.internal.type) {
+    case 'kontent_item_accessory':
+      createSlugField(node.elements.url_pattern.value)
+			typeFieldData = {
+				content: node.elements.long_description.value,
+				title: node.elements.product_name.value,
+			}
+			createSearchableItemNode(typeFieldData)
+      break
+
+    case 'kontent_item_article':
+      createSlugField(node.elements.url_pattern.value)
+			typeFieldData = {
+				content: node.elements.body_copy.value,
+				title: node.elements.title.value,
+				published: node.elements.post_date.value,
+				published_unix: toUnix(node.elements.post_date.value),
+			}
+			createSearchableItemNode(typeFieldData)
+      break
+
+    case 'kontent_item_cafe':
+      createSlugField(slugify(node.elements.city.value))
+			typeFieldData = {
+				title: node.elements.city.value,
+			}
+			createSearchableItemNode(typeFieldData)
   }
 }
+
+const toUnix = (date: string): string => Math.floor(new Date(date) / 1000)
 
 export default onCreateNode
