@@ -68,7 +68,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   const typeDefs = `
     type SearchableItem implements Node @dontInfer {
       id: ID!
-      content: String!
+      content: String
       modified: Date! @dateformat
       modified_unix: Int!
       published: Date @dateformat
