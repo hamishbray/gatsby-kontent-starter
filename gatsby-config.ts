@@ -12,6 +12,36 @@ export const flags = {
   FAST_DEV: true,
 }
 
+const queries = [
+	{
+		query: `
+			{
+				allSearchableItem {
+					edges {
+						node {
+							objectID: id
+							content
+							modified
+							modified_unix
+							published
+							published_unix
+							title
+							type
+							url
+							_tags: tags
+						}
+					}
+				}
+			}
+		`,
+		settings: {
+			searchableAttributes: ['title', 'type'],
+		},
+		transformer: ({ data }: { data: any }) => 
+			data.allSearchableItem.edges.map(({ node }: { node: any }) => node),
+	},
+]
+
 export const plugins = [
 	'gatsby-plugin-postcss',
 	'gatsby-plugin-typescript',
@@ -62,35 +92,7 @@ export const plugins = [
 			appId: process.env.ALGOLIA_APP_ID,
 			apiKey: process.env.ALGOLIA_API_KEY,
 			indexName: process.env.ALGOLIA_INDEX_NAME,
-			queries: [
-				{
-					query: `
-						{
-							allSearchableItem {
-								edges {
-									node {
-										objectID: id
-										content
-										modified
-										modified_unix
-										published
-										published_unix
-										title
-										type
-										url
-										_tags: tags
-									}
-								}
-							}
-						}
-					`,
-					settings: {
-						searchableAttributes: ['title', 'type'],
-					},
-					transformer: ({ data }: { data: any }) => 
-						data.allSearchableItem.edges.map(({ node }: { node: any }) => node),
-				},
-			],
+			queries,
 			enablePartialUpdates: true,
 			matchFields: ['modified'],
 		},
