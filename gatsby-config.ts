@@ -85,7 +85,6 @@ export const plugins = [
 						}
 					`,
 					settings: {
-						attributesToSnippet: [`content:20`],
 						searchableAttributes: ['title', 'type'],
 					},
 					transformer: ({ data }: { data: any }) => data.allSearchableItem.nodes,
