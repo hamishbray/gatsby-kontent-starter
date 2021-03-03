@@ -86,7 +86,6 @@ export const plugins = [
 					`,
 					settings: {
 						attributesToSnippet: [`content:20`],
-						customRanking: ['desc(published_unix)'],
 						searchableAttributes: ['title', 'type'],
 					},
 					transformer: ({ data }: { data: any }) => data.allSearchableItem.nodes,
