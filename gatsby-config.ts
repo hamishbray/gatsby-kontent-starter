@@ -25,6 +25,7 @@ const queries = [
 							modified_unix
 							published
 							published_unix
+							summary
 							title
 							type
 							url

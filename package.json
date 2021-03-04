@@ -7,6 +7,7 @@
   "dependencies": {
     "@kentico/gatsby-source-kontent": "^6.3.0",
     "@kentico/kontent-delivery": "^10.3.0",
+    "algoliasearch": "^4.8.5",
     "gatsby": "^3.0.0",
     "gatsby-image": "^3.0.0",
     "gatsby-plugin-algolia": "^0.16.3",
@@ -19,9 +20,11 @@
     "gatsby-plugin-typescript": "^3.0.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
+    "instantsearch.css": "^7.4.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-instantsearch-dom": "^6.10.3"
   },
   "devDependencies": {
     "@kentico/kontent-model-generator": "^3.2.0",
@@ -33,6 +36,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-helmet": "^6.1.0",
+    "@types/react-instantsearch-dom": "^6.8.0",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "autoprefixer": "^10.2.4",

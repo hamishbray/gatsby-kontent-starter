@@ -48,6 +48,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
       createSlugField(node.elements.url_pattern.value)
 			typeFieldData = {
 				content: node.elements.long_description.value,
+				summary: node.elements.short_description.value,
 				title: node.elements.product_name.value,
 			}
 			createSearchableItemNode(typeFieldData)
@@ -57,6 +58,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
       createSlugField(node.elements.url_pattern.value)
 			typeFieldData = {
 				content: node.elements.body_copy.value,
+				summary: node.elements.summary.value,
 				title: node.elements.title.value,
 				published: node.elements.post_date.value,
 				published_unix: toUnix(node.elements.post_date.value),
