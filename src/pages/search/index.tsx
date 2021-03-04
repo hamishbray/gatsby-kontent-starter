@@ -6,6 +6,7 @@ import {
   SearchBox,
   Hits,
   Pagination,
+	RefinementList
 } from 'react-instantsearch-dom'
 
 import 'instantsearch.css/themes/satellite.css' //'instantsearch.css/themes/reset.css'
@@ -25,8 +26,16 @@ const SearchPage: React.FC = () => (
     <InstantSearch {...{ indexName, searchClient }}>
       <Configure hitsPerPage={4} />
       <SearchBox />
-      <div className="mt-8"><Hits hitComponent={Hit} /></div>
-      <div className="mt-8"><Pagination /></div>
+			<div className="flex">
+				<div className="pr-8 mt-8">
+					<h3>Refine</h3>
+					<RefinementList attribute="type" />
+				</div>
+				<div className="flex-grow">
+					<div className="mt-8"><Hits hitComponent={Hit} /></div>
+					<div className="mt-8"><Pagination /></div>
+				</div>
+			</div>
     </InstantSearch>
   </Layout>
 )

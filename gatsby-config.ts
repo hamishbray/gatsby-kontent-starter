@@ -37,6 +37,7 @@ const queries = [
 		`,
 		settings: {
 			searchableAttributes: ['title', 'type'],
+			attributesForFaceting: ['type'],
 		},
 		transformer: ({ data }: { data: any }) => 
 			data.allSearchableItem.edges.map(({ node }: { node: any }) => node),
