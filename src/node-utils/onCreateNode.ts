@@ -50,6 +50,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 				content: node.elements.long_description.value,
 				summary: node.elements.short_description.value,
 				title: node.elements.product_name.value,
+				url: `/accessories/${node.fields.slug}`,
 			}
 			createSearchableItemNode(typeFieldData)
       break
@@ -62,6 +63,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 				title: node.elements.title.value,
 				published: node.elements.post_date.value,
 				published_unix: toUnix(node.elements.post_date.value),
+				url: `/articles/${node.fields.slug}`,
 			}
 			createSearchableItemNode(typeFieldData)
       break
@@ -70,6 +72,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
       createSlugField(slugify(node.elements.city.value))
 			typeFieldData = {
 				title: node.elements.city.value,
+				url: `/cafes/${node.fields.slug}`
 			}
 			createSearchableItemNode(typeFieldData)
   }
