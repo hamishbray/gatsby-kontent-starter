@@ -7,7 +7,7 @@ import {
   Pagination,
   RefinementList,
 } from 'react-instantsearch-dom'
-import { HistoryLocation } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 
 import 'instantsearch.css/themes/satellite.css' //'instantsearch.css/themes/reset.css'
 
@@ -24,11 +24,7 @@ import {
   searchStateToUrl,
 } from '../../utils/search'
 
-type Props = {
-	location: HistoryLocation,
-}
-
-const SearchPage: React.FC<Props> = ({ location }: Props) => {
+const SearchPage: React.FC<RouteComponentProps> = ({ location }: RouteComponentProps) => {
   const [searchState, setSearchState] = useState(
     isClient ? searchStateFromUrl(location) : undefined
   )
