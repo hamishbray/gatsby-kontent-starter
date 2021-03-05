@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useLocation } from '@reach/router'
 import {
   Configure,
   InstantSearch,
@@ -7,7 +8,6 @@ import {
   Pagination,
   RefinementList,
 } from 'react-instantsearch-dom'
-import { RouteComponentProps } from '@reach/router'
 
 import 'instantsearch.css/themes/satellite.css' //'instantsearch.css/themes/reset.css'
 
@@ -15,34 +15,40 @@ import Layout from '../../components/layout'
 import SEO from '../../components/seo'
 import Hit from '../../components/hit'
 import {
-	DEBOUNCE_TIME,
-	INDEX_NAME as indexName,
-	isClient,
+  DEBOUNCE_TIME,
+  INDEX_NAME as indexName,
+  isClient,
   createURL,
   getSearchClient,
+  SearchState,
   searchStateFromUrl,
   searchStateToUrl,
 } from '../../utils/search'
 
-const SearchPage: React.FC<RouteComponentProps> = ({ location }: RouteComponentProps) => {
+const SearchPage: React.FC = () => {
+  const location = useLocation()
   const [searchState, setSearchState] = useState(
     isClient ? searchStateFromUrl(location) : undefined
   )
-  const [debouncedState, setDebouncedState] = useState()
+  const setStateId = useRef<NodeJS.Timeout>()
 
-  const onSearchStateChange = (updatedSearchState: any) => {
-    debouncedState && clearTimeout(debouncedState)
+  useEffect(() => {
+    const nextSearchState = searchStateFromUrl(location)
 
-    setDebouncedState(
-      //@ts-ignore
-      setTimeout(() => {
-        history.pushState(
-          updatedSearchState,
-          '',
-          searchStateToUrl(updatedSearchState)
-        )
-      }, DEBOUNCE_TIME)
-    )
+    if (JSON.stringify(searchState) !== JSON.stringify(nextSearchState))
+      setSearchState(nextSearchState)
+  }, [location])
+
+  const onSearchStateChange = (updatedSearchState: SearchState) => {
+    setStateId.current && clearTimeout(setStateId.current)
+
+    setStateId.current = setTimeout(() => {
+      history.pushState(
+        updatedSearchState,
+        '',
+        searchStateToUrl(updatedSearchState)
+      )
+    }, DEBOUNCE_TIME)
 
     setSearchState(updatedSearchState)
   }

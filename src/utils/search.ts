@@ -1,3 +1,7 @@
+/**
+ *  Refer to https://www.algolia.com/doc/guides/building-search-ui/going-further/routing-urls/react/
+ */
+
 import algoliasearch, { SearchClient } from 'algoliasearch/lite'
 import qs from 'qs'
 import { WindowLocation } from '@reach/router'
@@ -12,20 +16,14 @@ type RefinementList = {
   type: string[]
 }
 
-type SearchState = {
+export type SearchState = {
   query?: string
   page?: number
   refinementList?: RefinementList
-	//category?: string 
+  //menu?: string
 }
 
-const getCategorySlug = (name: string) =>
-  name.split(' ').map(encodeURIComponent).join('+')
-
-const getCategoryName = (slug: string): string =>
-  slug.split('+').map(decodeURIComponent).join(' ')
-
-export const DEBOUNCE_TIME = 1000
+export const DEBOUNCE_TIME = 600
 export const INDEX_NAME = process.env.ALGOLIA_INDEX_NAME as string
 
 export const getSearchClient = (): SearchClient => {
@@ -34,15 +32,22 @@ export const getSearchClient = (): SearchClient => {
   return algoliasearch(appId, apiKey)
 }
 
+const getCategorySlug = (name: string) =>
+  name.split(' ').map(encodeURIComponent).join('+')
+
+const getCategoryName = (slug: string): string =>
+  slug.split('+').map(decodeURIComponent).join(' ')
+
 export const createURL = ({ query, page, refinementList }: SearchState) => {
-  // if it's default route
+  // return if it's default route or the search state has been reset
   if (
     !query &&
     page === 1 &&
     refinementList &&
     refinementList.type.length === 0
+    // && (menu && !menu.categories);
   )
-    return ''
+    return '/search/'
 
   // const categoryPath = menu.categories
   // ? `${getCategorySlug(menu.categories)}/`
@@ -65,9 +70,7 @@ export const createURL = ({ query, page, refinementList }: SearchState) => {
   return `/search/${queryString}`
 }
 
-export const searchStateFromUrl = (
-  location: WindowLocation | undefined
-): SearchState => {
+export const searchStateFromUrl = (location: WindowLocation): SearchState => {
   // const pathnameMatches = location?.pathname.match(/search\/(.*?)\/?$/)
   // const category = getCategoryName(
   //   (pathnameMatches && pathnameMatches[1]) || ''
