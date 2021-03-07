@@ -91,9 +91,9 @@ export const plugins = [
 	{
 		resolve: `gatsby-plugin-algolia`,
 		options: {
-			appId: process.env.ALGOLIA_APP_ID,
+			appId: process.env.GATSBY_ALGOLIA_APP_ID,
 			apiKey: process.env.ALGOLIA_API_KEY,
-			indexName: process.env.ALGOLIA_INDEX_NAME,
+			indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
 			queries,
 			enablePartialUpdates: true,
 			matchFields: ['modified'],

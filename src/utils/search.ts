@@ -24,7 +24,7 @@ export type SearchState = {
 }
 
 export const DEBOUNCE_TIME = 600
-export const INDEX_NAME = process.env.ALGOLIA_INDEX_NAME as string
+export const INDEX_NAME = process.env.GATSBY_ALGOLIA_INDEX_NAME as string
 
 export const getSearchClient = (): SearchClient => {
   const appId = process.env.GATSBY_ALGOLIA_APP_ID as string
