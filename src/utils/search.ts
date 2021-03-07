@@ -27,8 +27,8 @@ export const DEBOUNCE_TIME = 600
 export const INDEX_NAME = process.env.ALGOLIA_INDEX_NAME as string
 
 export const getSearchClient = (): SearchClient => {
-  const appId = process.env.ALGOLIA_APP_ID as string
-  const apiKey = process.env.ALGOLIA_API_KEY as string
+  const appId = process.env.GATSBY_ALGOLIA_APP_ID as string
+  const apiKey = process.env.GATSBY_ALGOLIA_SEARCH_API_KEY as string
   return algoliasearch(appId, apiKey)
 }
 
