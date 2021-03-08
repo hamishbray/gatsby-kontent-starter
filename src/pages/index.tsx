@@ -15,7 +15,7 @@ const IndexPage: React.FC = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    window.location.replace(`/search/?query=${value}`)
+    window.location.assign(`/search/?query=${value}`)
   }
 
   return (
