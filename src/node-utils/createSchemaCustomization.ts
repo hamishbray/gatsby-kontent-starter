@@ -77,6 +77,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       tags: [String!]
       title: String!
       type: String!
+			imageUrl: String
       url: String
     }
 	`

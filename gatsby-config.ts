@@ -28,6 +28,7 @@ const queries = [
 							summary
 							title
 							type
+							imageUrl
 							url
 							_tags: tags
 						}
@@ -95,8 +96,8 @@ export const plugins = [
 			apiKey: process.env.ALGOLIA_API_KEY,
 			indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
 			queries,
-			enablePartialUpdates: true,
-			matchFields: ['modified'],
+			// enablePartialUpdates: true,
+			// matchFields: ['modified'],
 		},
 	},
 ]

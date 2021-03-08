@@ -10,6 +10,7 @@ import {
 } from 'react-instantsearch-dom'
 
 import 'instantsearch.css/themes/satellite.css' //'instantsearch.css/themes/reset.css'
+import './search.css'
 
 import Layout from '../../components/layout'
 import SEO from '../../components/seo'
@@ -65,7 +66,7 @@ const SearchPage: React.FC = () => {
           createURL,
         }}
       >
-        <Configure hitsPerPage={4} />
+        <Configure hitsPerPage={6} />
         <SearchBox />
         <div className="flex">
           <div className="pr-8 mt-8">
