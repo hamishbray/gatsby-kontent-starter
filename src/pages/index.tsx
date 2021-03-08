@@ -10,7 +10,7 @@ const IndexPage: React.FC = () => {
 
   const [value, setValue] = useState('')
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void =>
     setValue(event.currentTarget.value)
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
