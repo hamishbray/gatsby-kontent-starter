@@ -70,7 +70,14 @@ export const createAccessoryPages = async (
     path: `/accessories`,
     component: resolve(`src/templates/accessories/index.tsx`),
     context: {
-      accessories,
+      accessories: accessories?.map(
+        ({ slug, image, productName, shortDescription }) => ({
+          slug,
+          image,
+          productName,
+          shortDescription,
+        })
+      ),
     },
   })
 

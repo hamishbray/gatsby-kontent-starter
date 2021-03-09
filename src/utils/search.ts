@@ -38,7 +38,11 @@ const getCategorySlug = (name: string) =>
 const getCategoryName = (slug: string): string =>
   slug.split('+').map(decodeURIComponent).join(' ')
 
-export const createURL = ({ query, page, refinementList }: SearchState) => {
+export const createURL = ({
+  query,
+  page,
+  refinementList,
+}: SearchState): string => {
   // return if it's default route or the search state has been reset
   if (
     !query &&
@@ -91,7 +95,7 @@ export const searchStateFromUrl = (location: WindowLocation): SearchState => {
   }
 }
 
-export const searchStateToUrl = (search: SearchState) =>
+export const searchStateToUrl = (search: SearchState): string =>
   search ? createURL(search) : ''
 
 export const isClient = typeof window !== 'undefined'

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
 import { useIdentityContext } from 'react-netlify-identity-widget'
 
