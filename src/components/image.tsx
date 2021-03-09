@@ -28,7 +28,12 @@ const Image = () => {
     return <div>Picture not found</div>
   }
 
-  return <GatsbyImage image={data.placeholderImage.childImageSharp.fluid} alt="gatsby-astronaut" />
+  return (
+    <GatsbyImage
+      image={data.placeholderImage.childImageSharp.fluid}
+      alt="gatsby-astronaut"
+    />
+  )
 }
 
 export default Image

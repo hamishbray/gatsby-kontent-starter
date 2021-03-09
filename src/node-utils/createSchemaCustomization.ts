@@ -45,24 +45,24 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   //   },
   // })
 
-	// const slugs = buildObjectType({
-	// 	name: 'KontentItemArticle',
-	// 	interfaces: ['Node'],
+  // const slugs = buildObjectType({
+  // 	name: 'KontentItemArticle',
+  // 	interfaces: ['Node'],
 
-	// 	fields: {
-	// 		slug: {
-	// 			type: 'String!',
-	// 			resolve: (source, args, context, info) => {
-	// 				return source.elements.url_pattern.value
-	// 			},
-	// 		},
-	// 	},
-	// 	extensions: {
-	//		infer: true,
-	// 	},
-	// })
+  // 	fields: {
+  // 		slug: {
+  // 			type: 'String!',
+  // 			resolve: (source, args, context, info) => {
+  // 				return source.elements.url_pattern.value
+  // 			},
+  // 		},
+  // 	},
+  // 	extensions: {
+  //		infer: true,
+  // 	},
+  // })
 
-	// createTypes([slugs])
+  // createTypes([slugs])
 
   // Create custom schema interfaces and extend types.
   const typeDefs = `
@@ -81,22 +81,22 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       url: String
     }
 	`
-    // interface NodeWithUrl implements Node {
-    //   id: ID!
-    //   url: String!
-    // }
-    // type KontentItemArticle implements Node @infer {
-    //   id: ID!
-    //   url: String!
-    // }
-    // type KontentItemCafe implements Node @infer {
-    //   id: ID!
-    //   url: String!
-    // }
-    // type KontentItemAccessory implements Node  @infer {
-    //   id: ID!
-    //   url: String!
-    // }
+  // interface NodeWithUrl implements Node {
+  //   id: ID!
+  //   url: String!
+  // }
+  // type KontentItemArticle implements Node @infer {
+  //   id: ID!
+  //   url: String!
+  // }
+  // type KontentItemCafe implements Node @infer {
+  //   id: ID!
+  //   url: String!
+  // }
+  // type KontentItemAccessory implements Node  @infer {
+  //   id: ID!
+  //   url: String!
+  // }
   //`
 
   createTypes(typeDefs)

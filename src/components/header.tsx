@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Header = ({ siteTitle, setDialog }: Props) => {
-	const { user, isLoggedIn } = useIdentityContext() 
+  const { user, isLoggedIn } = useIdentityContext()
   const name = user?.user_metadata?.full_name ?? 'NoName'
 
   return (

@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<any> = ({
   location,
   ...rest
 }: Props): JSX.Element | null => {
-	const { isLoggedIn } = useIdentityContext()
+  const { isLoggedIn } = useIdentityContext()
 
   if (!isLoggedIn && location.pathname !== `/account/login`) {
     navigate('/account/login')

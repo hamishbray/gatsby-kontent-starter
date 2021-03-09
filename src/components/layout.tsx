@@ -39,7 +39,7 @@ const Layout = ({ children }: Props) => {
         siteTitle={
           data.kontentItemHome.elements.metadata__meta_title.value || `Title`
         }
-				setDialog={setDialog}
+        setDialog={setDialog}
       />
       <div className="box-border max-w-screen-lg px-4 py-8 mx-auto">
         <main>{children}</main>
