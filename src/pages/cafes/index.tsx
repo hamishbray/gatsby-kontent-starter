@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
 
 import Layout from '../../components/layout'
 import SEO from '../../components/seo'
@@ -22,10 +23,10 @@ const CafesPage: React.FC<Props> = ({ data }: Props) => {
 					<Link key={index} to={`/cafes/${slug}`}>
 						<div className="px-4 pb-4 shadow">
 							<h2>{city}</h2>
-							<img
+							<ImageElement
 								width="300"
 								height="200"
-								src={`${photo?.url}?w=300`}
+								image={photo}
 								alt={photo?.description}
 							/>
 						</div>

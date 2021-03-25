@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, PageProps } from 'gatsby'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
 
 import Layout from '../../components/layout'
 import SEO from '../../components/seo'
@@ -22,10 +23,10 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
 			{pageContext.accessories?.map((accessory, index) => (
 				<div key={index} className="px-4 pb-4 shadow">
 					<Link to={`/accessories/${accessory.slug}`}>
-						<img
+						<ImageElement
 							width="300"
 							height="300"
-							src={`${accessory.image?.url}?w=300`}
+							image={accessory.image}
 							alt={accessory.image?.description}
 						/>
 						<h2>{accessory.productName}</h2>
