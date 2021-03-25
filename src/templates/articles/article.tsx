@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { ImageElement } from '@kentico/gatsby-kontent-components'
+import { ImageElement, ImageItem } from '@kentico/gatsby-kontent-components'
 
 import Layout from '../../components/layout'
 import { ArticleItem, parseArticle } from '../../models/article'
@@ -21,7 +21,7 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 					<ImageElement
 						width={teaserImage?.width}
 						height={teaserImage?.height}
-						image={teaserImage}
+						image={(teaserImage as unknown) as ImageItem}
 						alt={teaserImage?.description}
 					/>
 					<p className="mt-4 italic">Posted: {postDate}</p>
