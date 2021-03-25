@@ -1,4 +1,5 @@
 declare module '@kentico/gatsby-kontent-components' {
+	import { GatsbyImageProps, Layout } from 'gatsby-plugin-image'
 	interface ImageItem {
 		image_id: string
 		url: string
@@ -19,7 +20,7 @@ declare module '@kentico/gatsby-kontent-components' {
 		image: ImageItem
 		width?: number
 		height?: number
-		layout?: import('gatsby-plugin-image').Layout
+		layout?: Layout
 		backgroundColor?: string
 		sizes?: string
 		aspectRatio?: number
@@ -28,7 +29,7 @@ declare module '@kentico/gatsby-kontent-components' {
 
 	interface ImageElementProps
 		extends GetGatsbyImageDataProps,
-			Omit<import('gatsby-plugin-image').GatsbyImageProps, 'image' | 'alt'> {
+			Omit<GatsbyImageProps, 'image' | 'alt'> {
 		alt?: string
 	}
 
