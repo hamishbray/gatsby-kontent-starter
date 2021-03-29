@@ -1,12 +1,14 @@
+// This file was necessary because the beta version 7 of the gatsby-kontent-components lacks a declaration file
+// TODO: remove this when the official declaration file is written
 declare module '@kentico/gatsby-kontent-components' {
 	import { GatsbyImageProps, Layout } from 'gatsby-plugin-image'
 	interface ImageItem {
-		image_id: string
+		image_id?: string
 		url: string
 		description?: string
 		name?: string
-		height: number
-		width: number
+		height?: number
+		width?: number
 		type?: string
 	}
 
@@ -51,7 +53,7 @@ declare module '@kentico/gatsby-kontent-components' {
 		linkedItems?: any[]
 		resolveLinkedItem?: Function
 		images?: ImageItem[]
-		resolveImage?: ((image?: ImageItem) => JSX.Element) | undefined
+		resolveImage?: (image: ImageItem) => JSX.Element
 		links?: any[]
 		resolveLink?: Function
 		resolveDomNode?: Function

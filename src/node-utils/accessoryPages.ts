@@ -5,90 +5,90 @@ import { AllKontentResult } from './types'
 import { AccessoryItem, parseAccessory } from '../models/accessory'
 
 export const createAccessoryPages = async (
-  createPage: any,
-  graphql: any,
-  reporter: Reporter
+	createPage: any,
+	graphql: any,
+	reporter: Reporter
 ) => {
-  const result: AllKontentResult<
-    AccessoryItem,
-    'allAccessories'
-  > = await graphql(`
-    {
-      allAccessories: allKontentItemAccessory {
-        nodes {
-          fields {
-            slug
-          }
-          elements {
-            manufacturer {
-              value
-            }
-            price {
-              value
-            }
-            product_name {
-              value
-            }
-            long_description {
-              value
-            }
-            short_description {
-              value
-            }
-            image {
-              value {
-                description
-                url
-              }
-            }
-            url_pattern {
-              value
-            }
-            product_status {
-              value {
-                codename
-                name
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+	const result: AllKontentResult<
+		AccessoryItem,
+		'allAccessories'
+	> = await graphql(`
+		{
+			allAccessories: allKontentItemAccessory {
+				nodes {
+					fields {
+						slug
+					}
+					elements {
+						manufacturer {
+							value
+						}
+						price {
+							value
+						}
+						product_name {
+							value
+						}
+						long_description {
+							value
+						}
+						short_description {
+							value
+						}
+						image {
+							value {
+								description
+								url
+							}
+						}
+						url_pattern {
+							value
+						}
+						product_status {
+							value {
+								codename
+								name
+							}
+						}
+					}
+				}
+			}
+		}
+	`)
 
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running Accessory GraphQL query.`)
-    return
-  }
+	if (result.errors) {
+		reporter.panicOnBuild(`Error while running Accessory GraphQL query.`)
+		return
+	}
 
-  const accessories = result.data?.allAccessories.nodes.map(({ elements }) =>
-    parseAccessory(elements)
-  )
+	const accessories = result.data?.allAccessories.nodes.map(({ elements }) =>
+		parseAccessory(elements)
+	)
 
-  // All Accessories Page
-  createPage({
-    path: `/accessories`,
-    component: resolve(`src/templates/accessories/index.tsx`),
-    context: {
-      accessories: accessories?.map(
-        ({ slug, image, productName, shortDescription }) => ({
-          slug,
-          image,
-          productName,
-          shortDescription,
-        })
-      ),
-    },
-  })
+	// All Accessories Page
+	createPage({
+		path: `/accessories`,
+		component: resolve(`src/templates/accessory/index.tsx`),
+		context: {
+			accessories: accessories?.map(
+				({ slug, image, productName, shortDescription }) => ({
+					slug,
+					image,
+					productName,
+					shortDescription,
+				})
+			),
+		},
+	})
 
-  // Accessory Pages
-  accessories?.forEach(accessory => {
-    createPage({
-      path: `/accessories/${accessory.slug}`,
-      component: resolve(`src/templates/accessories/accessory.tsx`),
-      context: {
-        ...accessory,
-      },
-    })
-  })
+	// Accessory Pages
+	accessories?.forEach(accessory => {
+		createPage({
+			path: `/accessory/${accessory.slug}`,
+			component: resolve(`src/templates/accessory/accessory.tsx`),
+			context: {
+				...accessory,
+			},
+		})
+	})
 }

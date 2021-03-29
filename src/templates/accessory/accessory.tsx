@@ -1,5 +1,6 @@
 import React from 'react'
 import { PageProps } from 'gatsby'
+import { ImageElement, ImageItem } from '@kentico/gatsby-kontent-components'
 
 import Layout from '../../components/layout'
 import { Accessory } from '../../models/accessory'
@@ -13,10 +14,10 @@ const AccessoryPage: React.FC<Props> = ({ pageContext }: Props) => (
 		<div className="accessory">
 			<div>
 				<h1>{pageContext.productName}</h1>
-				<img
-					width="300"
-					height="300"
-					src={`${pageContext.image?.url}?w=300`}
+				<ImageElement
+					width={300}
+					height={300}
+					image={(pageContext.image as unknown) as ImageItem}
 					alt={pageContext.image?.description}
 				/>
 				<div

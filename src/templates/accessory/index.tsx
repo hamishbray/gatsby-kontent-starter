@@ -22,7 +22,7 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
 		<div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 md:gap-4 accessories">
 			{pageContext.accessories?.map((accessory, index) => (
 				<div key={index} className="px-4 pb-4 shadow">
-					<Link to={`/accessories/${accessory.slug}`}>
+					<Link to={`/accessory/${accessory.slug}`}>
 						<ImageElement
 							width={300}
 							height={300}
