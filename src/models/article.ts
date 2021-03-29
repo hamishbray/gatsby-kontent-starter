@@ -1,5 +1,13 @@
 import { ElementModels, Elements, ContentItem } from '@kentico/kontent-delivery'
-import { RichTextElement } from '../components/linkedItem'
+
+import { RichTextElement } from '../components/richText'
+import { KontentItem } from '../node-utils/types'
+
+export type RelatedArticle = {
+	fields: {
+		slug: string
+	}
+}
 
 export interface ArticleItem {
 	personas?: Elements.TaxonomyElement
@@ -10,7 +18,7 @@ export interface ArticleItem {
 	summary?: Elements.TextElement
 	sitemap?: Elements.TaxonomyElement
 	meta_description?: Elements.TextElement
-	related_articles?: Elements.LinkedItemsElement<ContentItem>
+	related_articles?: Elements.LinkedItemsElement<KontentItem<ArticleItem>>
 	url_pattern?: Elements.UrlSlugElement
 }
 
@@ -22,7 +30,7 @@ export interface Article {
 	teaserImage?: ElementModels.AssetModel
 	title?: string
 	summary?: string
-	relatedArticles?: string[]
+	relatedArticles?: Article[]
 	urlPattern?: string
 	slug?: string
 }
@@ -35,7 +43,9 @@ export const parseArticle = (article: ArticleItem): Article => ({
 	teaserImage: article.teaser_image?.value[0],
 	title: article.title?.value,
 	summary: article.summary?.value,
-	relatedArticles: article.related_articles?.itemCodenames,
+	relatedArticles: article.related_articles?.value.map(item =>
+		parseArticle(item.elements)
+	),
 	urlPattern: article.url_pattern?.value,
 	slug: article.url_pattern?.value,
 })

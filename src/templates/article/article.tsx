@@ -1,24 +1,31 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { ImageElement, ImageItem } from '@kentico/gatsby-kontent-components'
 
 import { ArticleItem, parseArticle } from '../../models/article'
 import { KontentResult } from '../../node-utils/types'
 import Layout from '../../components/layout'
 import RichText from '../../components/richText'
+import Card from '../../components/card'
 
 type Props = KontentResult<ArticleItem, 'articleItem'>
 
 const ArticlePage: React.FC<Props> = ({ data }: Props) => {
-	const { title, teaserImage, bodyCopy, postDate } = parseArticle(
-		data?.articleItem.elements ?? ({} as ArticleItem)
-	)
+	const {
+		title,
+		teaserImage,
+		bodyCopy,
+		postDate,
+		relatedArticles,
+		personas,
+	} = parseArticle(data?.articleItem.elements ?? ({} as ArticleItem))
 
 	return (
 		<Layout>
 			<article className="article">
 				<div>
 					<h1>{title}</h1>
+
 					{teaserImage && (
 						<ImageElement
 							width={teaserImage.width}
@@ -27,10 +34,45 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 							alt={teaserImage.description}
 						/>
 					)}
+
 					<p className="mt-4 italic">Posted: {postDate}</p>
+
+					{personas && (
+						<p className="flex my-4">
+							{personas.map(({ name }, index) => (
+								<span
+									key={index}
+									className="px-3 py-1 mr-2 text-white bg-yellow-900 rounded-full"
+								>
+									{name}
+								</span>
+							))}
+						</p>
+					)}
+
 					<div className="mt-4">
-						<RichText {...{ bodyCopy }} />
+						{bodyCopy && <RichText {...{ bodyCopy }} />}
 					</div>
+
+					{relatedArticles && relatedArticles.length > 0 && (
+						<>
+							<h2>Related Articles</h2>
+							<div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 sm:gap-4">
+								{relatedArticles.map(
+									({ title = '', teaserImage, slug = '' }, index) => (
+										<Card
+											key={index}
+											{...{
+												title,
+												image: (teaserImage as unknown) as ImageItem,
+												slug,
+											}}
+										/>
+									)
+								)}
+							</div>
+						</>
+					)}
 				</div>
 			</article>
 		</Layout>
@@ -107,7 +149,6 @@ export const query = graphql`
 				}
 				personas {
 					value {
-						codename
 						name
 					}
 				}
@@ -116,7 +157,24 @@ export const query = graphql`
 				}
 				related_articles {
 					value {
-						id
+						... on kontent_item_article {
+							fields {
+								slug
+							}
+							elements {
+								title {
+									value
+								}
+								teaser_image {
+									value {
+										description
+										url
+										height
+										width
+									}
+								}
+							}
+						}
 					}
 				}
 				summary {

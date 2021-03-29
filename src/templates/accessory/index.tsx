@@ -29,7 +29,7 @@ const Accessories: React.FC<Props> = ({ pageContext }: Props) => (
 							image={(accessory.image as unknown) as ImageItem}
 							alt={accessory.image?.description}
 						/>
-						<h2>{accessory.productName}</h2>
+						<h3>{accessory.productName}</h3>
 						<div
 							dangerouslySetInnerHTML={{ __html: accessory.shortDescription }}
 						/>

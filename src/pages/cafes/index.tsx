@@ -22,7 +22,7 @@ const CafesPage: React.FC<Props> = ({ data }: Props) => {
 				{cafes?.map(({ city, photo, slug }, index) => (
 					<Link key={index} to={`/cafes/${slug}`}>
 						<div className="px-4 pb-4 shadow">
-							<h2>{city}</h2>
+							<h4>{city}</h4>
 							<ImageElement
 								width={300}
 								height={200}
