@@ -23,6 +23,10 @@
 		@apply mb-2;
 	}
 
+	p > a {
+		@apply underline;
+	}
+
 	a:hover {
 		@apply underline;
 	}
