@@ -20,7 +20,7 @@ const CafesPage: React.FC<Props> = ({ data }: Props) => {
 			<h1>Our Cafes</h1>
 			<div className="grid gap-8 md:grid-cols-3 sm:grid-cols-1 sm:gap-4">
 				{cafes?.map(({ city, photo, slug }, index) => (
-					<Link key={index} to={`/cafes/${slug}`}>
+					<Link key={index} to={`/cafe/${slug}`}>
 						<div className="px-4 pb-4 shadow">
 							<h4>{city}</h4>
 							<ImageElement
