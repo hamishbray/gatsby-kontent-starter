@@ -1,4 +1,6 @@
 import React from 'react'
+import { LiteYoutubeEmbed } from 'react-lite-yt-embed'
+
 import { Name } from './richText'
 
 export type HostedVideoElement = {
@@ -32,13 +34,9 @@ const Video: React.FC<HostedVideo> = ({ id, host }: HostedVideo) =>
 			frameBorder="0"
 		></iframe>
 	) : (
-		<iframe
-			className="my-4 hosted-video__wrapper"
-			width="560"
-			height="315"
-			src={`https://www.youtube.com/embed/${id}`}
-			frameBorder="0"
-		></iframe>
+		<div className="my-4">
+			<LiteYoutubeEmbed id={id} mute={false} />
+		</div>
 	)
 
 export default Video
