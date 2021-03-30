@@ -1,9 +1,9 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { ImageElement, ImageItem } from '@kentico/gatsby-kontent-components'
 
 import { ArticleItem, parseArticle } from '../../models/article'
-import { KontentResult } from '../../node-utils/types'
+import { KontentItem, KontentResult } from '../../node-utils/types'
 import Layout from '../../components/layout'
 import RichText from '../../components/richText'
 import Card from '../../components/card'
@@ -18,7 +18,11 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 		postDate,
 		relatedArticles,
 		personas,
-	} = parseArticle(data?.articleItem.elements ?? ({} as ArticleItem))
+	} = parseArticle({
+		...(data?.articleItem ?? ({} as KontentItem<ArticleItem>)),
+	})
+
+	const type = data?.articleItem.system?.type ?? ''
 
 	return (
 		<Layout>
@@ -66,6 +70,7 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 												title,
 												image: (teaserImage as unknown) as ImageItem,
 												slug,
+												type,
 											}}
 										/>
 									)
@@ -173,6 +178,9 @@ export const query = graphql`
 										width
 									}
 								}
+								url_pattern {
+									value
+								}
 							}
 						}
 					}
@@ -191,6 +199,9 @@ export const query = graphql`
 				title {
 					value
 				}
+			}
+			system {
+				type
 			}
 		}
 	}

@@ -3,12 +3,6 @@ import { ElementModels, Elements, ContentItem } from '@kentico/kontent-delivery'
 import { RichTextElement } from '../components/richText'
 import { KontentItem } from '../node-utils/types'
 
-export type RelatedArticle = {
-	fields: {
-		slug: string
-	}
-}
-
 export interface ArticleItem {
 	personas?: Elements.TaxonomyElement
 	body_copy?: RichTextElement
@@ -33,19 +27,23 @@ export interface Article {
 	relatedArticles?: Article[]
 	urlPattern?: string
 	slug?: string
+	type?: string
 }
 
-export const parseArticle = (article: ArticleItem): Article => ({
-	metaDescription: article.meta_description?.value,
-	personas: article.personas?.value,
-	bodyCopy: article.body_copy,
-	postDate: article.post_date?.value,
-	teaserImage: article.teaser_image?.value[0],
-	title: article.title?.value,
-	summary: article.summary?.value,
-	relatedArticles: article.related_articles?.value.map(item =>
-		parseArticle(item.elements)
+export const parseArticle = ({
+	elements,
+	fields,
+}: KontentItem<ArticleItem>): Article => ({
+	metaDescription: elements.meta_description?.value,
+	personas: elements.personas?.value,
+	bodyCopy: elements.body_copy,
+	postDate: elements.post_date?.value,
+	teaserImage: elements.teaser_image?.value[0],
+	title: elements.title?.value,
+	summary: elements.summary?.value,
+	relatedArticles: elements.related_articles?.value.map(item =>
+		parseArticle({ ...item })
 	),
-	urlPattern: article.url_pattern?.value,
-	slug: article.url_pattern?.value,
+	urlPattern: elements.url_pattern?.value,
+	slug: fields.slug,
 })

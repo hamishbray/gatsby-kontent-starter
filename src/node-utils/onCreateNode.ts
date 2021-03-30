@@ -73,7 +73,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 				summary: node.elements.short_description.value,
 				title: node.elements.product_name.value,
 				imageUrl: node.elements.image.value[0].url,
-				url: `/accessory/${node.fields.slug}`,
+				url: `/${node.system.type}/${node.fields.slug}`,
 			}
 			createSearchableItemNode(typeFieldData)
 			break
@@ -87,7 +87,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 				published: node.elements.post_date.value,
 				published_unix: toUnix(node.elements.post_date.value),
 				imageUrl: node.elements.teaser_image.value[0].url,
-				url: `/article/${node.fields.slug}`,
+				url: `/${node.system.type}/${node.fields.slug}`,
 			}
 			createSearchableItemNode(typeFieldData)
 			break
@@ -97,7 +97,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 			typeFieldData = {
 				title: node.elements.city.value,
 				imageUrl: node.elements.photo.value[0].url,
-				url: `/cafe/${node.fields.slug}`,
+				url: `/${node.system.type}/${node.fields.slug}`,
 			}
 			createSearchableItemNode(typeFieldData)
 	}

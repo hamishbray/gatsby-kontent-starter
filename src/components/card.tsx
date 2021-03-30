@@ -6,10 +6,11 @@ type Props = {
 	slug: string
 	title: string
 	image?: ImageItem
+	type: string
 }
 
-const Card: React.FC<Props> = ({ slug, title, image }: Props) => (
-	<Link to={`/cafes/${slug}`}>
+const Card: React.FC<Props> = ({ slug, title, image, type }: Props) => (
+	<Link to={`/${type}/${slug}`}>
 		<div className="px-4 pb-4 shadow">
 			<h4>{title}</h4>
 			{image && (
