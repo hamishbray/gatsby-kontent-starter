@@ -1,6 +1,5 @@
 // @ts-nocheck - lots of unknown types below. e.g. node.elements
 import { GatsbyNode } from 'gatsby'
-import slugify from '@sindresorhus/slugify'
 import crypto from 'crypto'
 import { createRemoteFileNode } from 'gatsby-source-filesystem'
 
@@ -93,7 +92,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
 			break
 
 		case 'kontent_item_cafe':
-			createField('slug', slugify(node.elements.city.value))
+			createField('slug', node.elements.url_pattern.value)
 			typeFieldData = {
 				title: node.elements.city.value,
 				imageUrl: node.elements.photo.value[0].url,
